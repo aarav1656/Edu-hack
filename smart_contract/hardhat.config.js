@@ -4,9 +4,24 @@ require("@nomiclabs/hardhat-waffle");
 // https://eth-sepolia.g.alchemy.com/v2/SrI_-9Vt7Mj6RXG-jk8nirq9X9l0sNUa
 module.exports = {
   networks: {
-    sepolia: {
-      url: 'https://eth-sepolia.g.alchemy.com/v2/E2MUYzIfYIF7pRQQ2PaEj8KhcjXMXviK',
-      accounts: ['3dc5a139c3753d94c057555b5773506163d060ee5f30ace701a075ec206bd526'],
+    opencampus: {
+      url: `https://rpc.open-campus-codex.gelato.digital/`,
+      accounts: [process.env.ACCOUNT_PRIVATE_KEY],
+    },
+    etherscan: {
+      apiKey: {
+        opencampus: "your-etherscan-api-key",
+      },
+      customChains: [
+        {
+          network: "opencampus",
+          chainId: 656476,
+          urls: {
+            apiURL: "https://opencampus-codex.blockscout.com/api",
+            browserURL: "https://opencampus-codex.blockscout.com",
+          },
+        },
+      ],
     },
   },
   solidity: {
